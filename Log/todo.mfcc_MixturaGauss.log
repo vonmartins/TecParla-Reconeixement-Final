@@ -1,0 +1,23 @@
+Surface
+/home/marti/Projects/TecParla-Reconeixement-Final
+Mon Jan 12 18:49:50 CET 2026
+from ramses.mfcc import extraer_mfcc
+def mfcc(x):
+    return extraer_mfcc(x, numcep=13, nfilt=26)
+python3 /home/marti/Projects/TecParla-Reconeixement-Final/ramses/parametriza.py -s ./Sen -p ./Prm/mfcc_MixturaGauss -f mfcc -e ./Prm/mfcc_MixturaGauss/mfcc ./Gui/train.gui ./Gui/devel.gui
+  0%|··········| 0/4000 [00:00<?, ?it/s]  2%|··········| 94/4000 [00:00<00:04, 934.00it/s]  5%||·········| 188/4000 [00:00<00:04, 882.79it/s]  7%|-·········| 277/4000 [00:00<00:04, 844.31it/s]  9%|-·········| 362/4000 [00:00<00:04, 834.57it/s] 11%|#·········| 446/4000 [00:00<00:04, 818.76it/s] 14%|#|········| 543/4000 [00:00<00:03, 866.28it/s] 16%|#|········| 633/4000 [00:00<00:03, 873.67it/s] 18%|#-········| 721/4000 [00:00<00:04, 780.70it/s] 20%|##········| 811/4000 [00:00<00:03, 813.78it/s] 23%|##········| 903/4000 [00:01<00:03, 842.87it/s] 25%|##|·······| 989/4000 [00:01<00:04, 749.85it/s] 27%|##-·······| 1070/4000 [00:01<00:03, 764.16it/s] 29%|##-·······| 1149/4000 [00:01<00:03, 756.13it/s] 31%|###·······| 1235/4000 [00:01<00:03, 784.56it/s] 33%|###·······| 1315/4000 [00:01<00:03, 784.56it/s] 35%|###|······| 1408/4000 [00:01<00:03, 823.73it/s] 37%|###-······| 1492/4000 [00:01<00:03, 800.48it/s] 40%|###-······| 1591/4000 [00:01<00:02, 854.23it/s] 42%|####······| 1680/4000 [00:02<00:02, 861.96it/s] 44%|####|·····| 1767/4000 [00:02<00:02, 836.93it/s] 46%|####|·····| 1852/4000 [00:02<00:02, 731.89it/s] 48%|####-·····| 1928/4000 [00:02<00:03, 603.80it/s] 50%|####-·····| 1994/4000 [00:02<00:03, 573.63it/s] 51%|#####·····| 2055/4000 [00:02<00:03, 578.37it/s] 53%|#####·····| 2116/4000 [00:02<00:03, 577.50it/s] 55%|#####|····| 2208/4000 [00:02<00:02, 666.80it/s] 57%|#####-····| 2294/4000 [00:03<00:02, 718.58it/s] 59%|#####-····| 2369/4000 [00:03<00:02, 721.83it/s] 74%|#######|··| 2972/4000 [00:03<00:00, 2224.89it/s] 80%|########··| 3204/4000 [00:03<00:00, 1672.95it/s] 85%|########|·| 3398/4000 [00:03<00:00, 1434.81it/s] 89%|########-·| 3565/4000 [00:03<00:00, 1152.31it/s] 93%|#########·| 3703/4000 [00:04<00:00, 1076.87it/s] 96%|#########|| 3826/4000 [00:04<00:00, 1030.69it/s] 98%|#########-| 3939/4000 [00:04<00:00, 966.53it/s] 100%|##########| 4000/4000 [00:04<00:00, 914.42it/s]
+python3 /home/marti/Projects/TecParla-Reconeixement-Final/ramses/entrena.py -p ./Prm/mfcc_MixturaGauss -m ./Sen -l ./Lis/vocales.lis -M ./Mod/mfcc_MixturaGauss/vocales.mod -C MixturaGauss ./Gui/train.gui
+  0%|          | 0/2000 [00:00<?, ?it/s] 33%|███▎      | 655/2000 [00:00<00:00, 6544.42it/s] 66%|██████▌   | 1310/2000 [00:00<00:00, 5906.38it/s]100%|█████████▉| 1993/2000 [00:00<00:00, 6301.79it/s]100%|██████████| 2000/2000 [00:00<00:00, 6249.29it/s]
+python3 /home/marti/Projects/TecParla-Reconeixement-Final/ramses/reconoce.py -r ./Rec/mfcc_MixturaGauss -p ./Prm/mfcc_MixturaGauss -M ./Mod/mfcc_MixturaGauss/vocales.mod -C MixturaGauss ./Gui/devel.gui
+Traceback (most recent call last):
+  File "/home/marti/Projects/TecParla-Reconeixement-Final/ramses/reconoce.py", line 73, in <module>
+    reconoce(dirRec, dirPrm, ficMod, *guiSen, ClsMod=clsMod)
+  File "/home/marti/Projects/TecParla-Reconeixement-Final/ramses/reconoce.py", line 19, in reconoce
+    modelo = ClsMod(pathMod=ficMod)
+             ^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marti/Projects/TecParla-Reconeixement-Final/ramses/mixgauss.py", line 13, in __init__
+    self.leeMod(pathMod)
+  File "/home/marti/Projects/TecParla-Reconeixement-Final/ramses/mixgauss.py", line 31, in leeMod
+    for i in range(self.n_gaussianas[unidad]):
+                   ~~~~~~~~~~~~~~~~~^^^^^^^^
+TypeError: 'int' object is not subscriptable

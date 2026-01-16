@@ -1,0 +1,7 @@
+numpy>=1.21.0
+scipy>=1.7.0
+soundfile>=0.10.0
+python_speech_features>=0.6
+tqdm>=4.62.0
+docopt>=0.6.2
+torch>=1.10.0

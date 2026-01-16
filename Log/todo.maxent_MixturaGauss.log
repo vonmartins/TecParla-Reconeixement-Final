@@ -1,0 +1,23 @@
+Surface
+/home/marti/Projects/TecParla-Reconeixement-Final
+Mon Jan 12 18:50:27 CET 2026
+from ramses.maxent import extraer_maxent
+def maxent(x):
+    return extraer_maxent(x, p=12)
+python3 /home/marti/Projects/TecParla-Reconeixement-Final/ramses/parametriza.py -s ./Sen -p ./Prm/maxent_MixturaGauss -f maxent -e ./Prm/maxent_MixturaGauss/maxent ./Gui/train.gui ./Gui/devel.gui
+  0%|··········| 0/4000 [00:00<?, ?it/s]  3%|··········| 125/4000 [00:00<00:03, 1247.40it/s]  6%||·········| 256/4000 [00:00<00:02, 1280.36it/s] 10%|-·········| 385/4000 [00:00<00:02, 1239.19it/s] 14%|#|········| 542/4000 [00:00<00:02, 1362.36it/s] 17%|#-········| 679/4000 [00:00<00:02, 1333.54it/s] 21%|##········| 855/4000 [00:00<00:02, 1473.08it/s] 25%|##|·······| 1003/4000 [00:00<00:02, 1433.30it/s] 29%|##-·······| 1149/4000 [00:00<00:01, 1440.94it/s] 33%|###|······| 1338/4000 [00:00<00:01, 1576.67it/s] 38%|###-······| 1519/4000 [00:01<00:01, 1646.63it/s] 42%|####······| 1685/4000 [00:01<00:01, 1579.66it/s] 46%|####|·····| 1844/4000 [00:01<00:01, 1515.89it/s] 50%|####-·····| 1997/4000 [00:01<00:01, 1503.52it/s] 54%|#####|····| 2163/4000 [00:01<00:01, 1547.64it/s] 58%|#####-····| 2319/4000 [00:01<00:01, 1446.16it/s] 62%|######····| 2466/4000 [00:01<00:01, 1424.97it/s] 66%|######|···| 2651/4000 [00:01<00:00, 1544.46it/s] 70%|#######···| 2816/4000 [00:01<00:00, 1573.80it/s] 74%|#######|··| 2975/4000 [00:02<00:00, 1499.52it/s] 78%|#######-··| 3127/4000 [00:02<00:00, 1469.54it/s] 82%|########··| 3275/4000 [00:02<00:00, 1448.44it/s] 86%|########|·| 3421/4000 [00:02<00:00, 1417.03it/s] 90%|########-·| 3589/4000 [00:02<00:00, 1491.22it/s] 95%|#########|| 3788/4000 [00:02<00:00, 1632.63it/s] 99%|#########-| 3953/4000 [00:02<00:00, 1585.20it/s]100%|##########| 4000/4000 [00:02<00:00, 1488.43it/s]
+python3 /home/marti/Projects/TecParla-Reconeixement-Final/ramses/entrena.py -p ./Prm/maxent_MixturaGauss -m ./Sen -l ./Lis/vocales.lis -M ./Mod/maxent_MixturaGauss/vocales.mod -C MixturaGauss ./Gui/train.gui
+  0%|          | 0/2000 [00:00<?, ?it/s] 28%|██▊       | 550/2000 [00:00<00:00, 5495.54it/s] 56%|█████▌    | 1123/2000 [00:00<00:00, 5629.90it/s] 84%|████████▍ | 1686/2000 [00:00<00:00, 5311.16it/s]100%|██████████| 2000/2000 [00:00<00:00, 5415.25it/s]
+python3 /home/marti/Projects/TecParla-Reconeixement-Final/ramses/reconoce.py -r ./Rec/maxent_MixturaGauss -p ./Prm/maxent_MixturaGauss -M ./Mod/maxent_MixturaGauss/vocales.mod -C MixturaGauss ./Gui/devel.gui
+Traceback (most recent call last):
+  File "/home/marti/Projects/TecParla-Reconeixement-Final/ramses/reconoce.py", line 73, in <module>
+    reconoce(dirRec, dirPrm, ficMod, *guiSen, ClsMod=clsMod)
+  File "/home/marti/Projects/TecParla-Reconeixement-Final/ramses/reconoce.py", line 19, in reconoce
+    modelo = ClsMod(pathMod=ficMod)
+             ^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marti/Projects/TecParla-Reconeixement-Final/ramses/mixgauss.py", line 13, in __init__
+    self.leeMod(pathMod)
+  File "/home/marti/Projects/TecParla-Reconeixement-Final/ramses/mixgauss.py", line 31, in leeMod
+    for i in range(self.n_gaussianas[unidad]):
+                   ~~~~~~~~~~~~~~~~~^^^^^^^^
+TypeError: 'int' object is not subscriptable

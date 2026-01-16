@@ -1,0 +1,25 @@
+Surface
+/home/marti/Projects/TecParla-Reconeixement-Final
+Mon Jan 12 18:51:16 CET 2026
+import numpy as np
+def cepstrum(x):
+    Sx=10*np.log10(1e-10+abs(np.fft.fft(x))**2)
+    cepstrum = np.real(np.fft.ifft(Sx))
+    return cepstrum[:20]
+python3 /home/marti/Projects/TecParla-Reconeixement-Final/ramses/parametriza.py -s ./Sen -p ./Prm/cepstrum_RedNeuronal -f cepstrum -e ./Prm/cepstrum_RedNeuronal/cepstrum ./Gui/train.gui ./Gui/devel.gui
+  0%|··········| 0/4000 [00:00<?, ?it/s]  6%||·········| 250/4000 [00:00<00:01, 2496.79it/s] 13%|#·········| 520/4000 [00:00<00:01, 2614.64it/s] 20%|#-········| 782/4000 [00:00<00:01, 2249.05it/s] 25%|##|·······| 1013/4000 [00:00<00:01, 2267.03it/s] 31%|###·······| 1245/4000 [00:00<00:01, 2283.22it/s] 37%|###-······| 1476/4000 [00:00<00:01, 2091.73it/s] 43%|####······| 1717/4000 [00:00<00:01, 2184.80it/s] 49%|####-·····| 1951/4000 [00:00<00:00, 2229.05it/s] 55%|#####|····| 2201/4000 [00:00<00:00, 2305.86it/s] 61%|######····| 2434/4000 [00:01<00:00, 2290.16it/s] 67%|######|···| 2665/4000 [00:01<00:00, 2169.64it/s] 72%|#######···| 2885/4000 [00:01<00:00, 2158.76it/s] 78%|#######-··| 3103/4000 [00:01<00:00, 2011.00it/s] 83%|########··| 3307/4000 [00:01<00:00, 1964.89it/s] 88%|########-·| 3506/4000 [00:01<00:00, 1971.65it/s] 93%|#########·| 3722/4000 [00:01<00:00, 2023.80it/s] 98%|#########-| 3926/4000 [00:01<00:00, 1818.58it/s]100%|##########| 4000/4000 [00:01<00:00, 2064.77it/s]
+python3 /home/marti/Projects/TecParla-Reconeixement-Final/ramses/entrena.py -p ./Prm/cepstrum_RedNeuronal -m ./Sen -l ./Lis/vocales.lis -M ./Mod/cepstrum_RedNeuronal/vocales.mod -C RedNeuronal ./Gui/train.gui
+  0%|          | 0/2000 [00:00<?, ?it/s] 32%|███▏      | 630/2000 [00:00<00:00, 6298.68it/s] 64%|██████▍   | 1280/2000 [00:00<00:00, 6414.69it/s] 98%|█████████▊| 1954/2000 [00:00<00:00, 6562.56it/s]100%|██████████| 2000/2000 [00:00<00:00, 6539.92it/s]
+python3 /home/marti/Projects/TecParla-Reconeixement-Final/ramses/reconoce.py -r ./Rec/cepstrum_RedNeuronal -p ./Prm/cepstrum_RedNeuronal -M ./Mod/cepstrum_RedNeuronal/vocales.mod -C RedNeuronal ./Gui/devel.gui
+  0%|··········| 0/2000 [00:00<?, ?it/s]  6%|/·········| 115/2000 [00:00<00:01, 1144.16it/s] 13%|#|········| 269/2000 [00:00<00:01, 1375.37it/s] 21%|##········| 416/2000 [00:00<00:01, 1418.32it/s] 28%|##-·······| 558/2000 [00:00<00:01, 1409.70it/s] 35%|###/······| 699/2000 [00:00<00:00, 1334.63it/s] 44%|####|·····| 876/2000 [00:00<00:00, 1475.23it/s] 53%|#####|····| 1068/2000 [00:00<00:00, 1613.98it/s] 62%|######····| 1231/2000 [00:00<00:00, 1509.39it/s] 71%|#######···| 1411/2000 [00:00<00:00, 1593.65it/s] 80%|#######\··| 1598/2000 [00:01<00:00, 1673.44it/s] 88%|########\·| 1767/2000 [00:01<00:00, 1593.05it/s] 96%|#########-| 1929/2000 [00:01<00:00, 1575.24it/s]100%|##########| 2000/2000 [00:01<00:00, 1514.39it/s]
+python3 /home/marti/Projects/TecParla-Reconeixement-Final/ramses/evalua.py -r ./Rec/cepstrum_RedNeuronal -m ./Sen ./Gui/devel.gui
+  0%|          | 0/2000 [00:00<?, ?it/s] 80%|███████▉  | 1598/2000 [00:00<00:00, 15973.50it/s]100%|██████████| 2000/2000 [00:00<00:00, 14739.74it/s]
+	a	e	i	o	u
+a	373	5	0	22	0
+e	9	375	8	5	3
+i	0	27	363	2	8
+o	14	5	0	358	23
+u	3	0	0	49	348
+exact = 90.85%
+Mon Jan 12 18:51:29 CET 2026
+sacabao, chula
